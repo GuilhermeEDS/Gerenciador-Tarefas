@@ -79,13 +79,13 @@
             <td class="p-5 text-left ">
               <div>
                 <a class="m-2 hover:border-slate-50 hover:bg-slate-900 hover:text-slate-50 border px-4 py-2 bg-slate-400 border-slate-900 rounded-md"
-                  routerLink="/tarefa/editar/{{tarefa.id}}" type="submit">Editar</a>
+                  routerLink="/tarefa/editar/{{tarefa.id}}">Editar</a>
                 <button
                   class="m-2 hover:border-slate-50 hover:bg-slate-900 hover:text-slate-50 border px-4 py-2 bg-slate-400 border-slate-900 rounded-md"
-                  (click)="remover(tarefaURL + '/remover/' + tarefa.id)" type="submit">Excluir</button>
+                  (click)="remover(tarefaURL + '/remover/' + tarefa.id)">Excluir</button>
                 <button
                   class="m-2 hover:border-slate-50 hover:bg-slate-900 hover:text-slate-50 border px-4 py-2 bg-slate-400 border-slate-900 rounded-md"
-                  (click)="concluir(tarefaURL + '/concluir/' + tarefa.id)" type="submit">Concluir</button>
+                  (click)="concluir(tarefaURL + '/concluir/' + tarefa.id)">Concluir</button>
               </div>
             </td>
           </tr>

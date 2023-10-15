@@ -45,8 +45,11 @@ public class FuncionarioController {
     }
 
     @PostMapping("/funcionario/{idFuncionario}")
-    public ResponseEntity<?> editarFuncionario(@RequestBody @Valid FuncionarioDTO funcionarioDTO, @PathVariable Long idFuncionario, @NonNull BindingResult result) {
+    public ResponseEntity<?> editarFuncionario(@RequestBody @Valid FuncionarioDTO funcionarioDTO, @NonNull BindingResult result, @PathVariable Long idFuncionario) {
         if (result.hasErrors()) {
+            result.getAllErrors().forEach(error ->{
+                System.out.println(error.getDefaultMessage());
+            });
             return ResponseEntity.ok(result.getAllErrors());
         }
         funcionarioService.atualizarFuncionario(funcionarioDTO, idFuncionario);

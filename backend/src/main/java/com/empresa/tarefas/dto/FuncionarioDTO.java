@@ -1,13 +1,14 @@
 package com.empresa.tarefas.dto;
 
 import com.empresa.tarefas.entity.Funcionario;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 public class FuncionarioDTO {
 
-    @NotNull(message = "Nome não pode ser vazio.")
+    @NotEmpty(message = "Nome não pode ser vazio.")
     public String nome;
-    @NotNull(message = "Cpf não pode ser vazio.")
+    @NotEmpty(message = "Cpf não pode ser vazio.")
     public String cpf;
 
     public FuncionarioDTO(String nome, String cpf) {

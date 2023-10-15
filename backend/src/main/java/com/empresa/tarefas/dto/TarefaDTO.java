@@ -3,13 +3,14 @@ package com.empresa.tarefas.dto;
 import com.empresa.tarefas.entity.Tarefa;
 import com.empresa.tarefas.enumeration.Prioridade;
 import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
 public class TarefaDTO {
-    @NotNull(message = "Título não pode ser vazio.")
+    @NotEmpty(message = "Título não pode ser vazio.")
     private String titulo;
 
     private String descricao;

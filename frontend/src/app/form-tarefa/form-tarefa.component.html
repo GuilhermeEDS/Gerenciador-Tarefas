@@ -23,7 +23,7 @@
             Responsável
           </label>
           <select required name="idFuncionario" [(ngModel)]="tarefa.idFuncionario" class="input appearance-none mb-2" id="responsavel">
-            <option value="-1"></option>
+            <option value=""></option>
             <option *ngFor="let funcionario of funcionarios" value="{{funcionario.id}}">{{funcionario.nome}}</option>
           </select>
         </div>

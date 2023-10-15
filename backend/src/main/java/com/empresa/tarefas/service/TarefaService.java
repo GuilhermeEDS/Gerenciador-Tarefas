@@ -1,6 +1,5 @@
 package com.empresa.tarefas.service;
 
-import com.empresa.tarefas.arq.ValidacaoEntidadeException;
 import com.empresa.tarefas.dto.TarefaDTO;
 import com.empresa.tarefas.entity.Funcionario;
 import com.empresa.tarefas.entity.Tarefa;
@@ -29,10 +28,10 @@ public class TarefaService {
         return tarefaRepository.findAll();
     }
 
-    public Tarefa porId(Long id) throws ValidacaoEntidadeException{
+    public Tarefa porId(Long id){
         Optional<Tarefa> tarefa = tarefaRepository.findById(id);
         if (tarefa.isEmpty()) {
-            throw new ValidacaoEntidadeException("Tarefa não cadastrada");
+            return null;
         }
         return tarefa.get();
     }

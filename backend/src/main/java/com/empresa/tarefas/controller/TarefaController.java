@@ -1,5 +1,6 @@
 package com.empresa.tarefas.controller;
 
+import com.empresa.tarefas.dto.FuncionarioDTO;
 import com.empresa.tarefas.dto.TarefaDTO;
 import com.empresa.tarefas.entity.Funcionario;
 import com.empresa.tarefas.entity.Tarefa;
@@ -57,14 +58,16 @@ public class TarefaController {
     }
 
     @PostMapping("/tarefa/{idTarefa}")
-    public ResponseEntity<?> editarTarefa(@RequestBody @Valid TarefaDTO tarefaDTO, @PathVariable Long idTarefa, @NonNull BindingResult result) {
+    public ResponseEntity<?> editarTarefa(@RequestBody @Valid TarefaDTO tarefaDTO, @NonNull BindingResult result, @PathVariable Long idTarefa) {
         if (result.hasErrors()) {
+            result.getAllErrors().forEach(error ->{
+                System.out.println(error.getDefaultMessage());
+            });
             return ResponseEntity.ok(result.getAllErrors());
         }
         tarefaService.atualizarTarefa(tarefaDTO, idTarefa);
         return ResponseEntity.ok(result.getAllErrors());
     }
-
     @DeleteMapping("/tarefa/remover/{idTarefa}")
     public void deletarTarefa(@PathVariable Long idTarefa) {
         tarefaService.removerTarefa(idTarefa);
