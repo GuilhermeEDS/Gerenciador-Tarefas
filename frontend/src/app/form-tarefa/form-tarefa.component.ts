@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from '../app.service';
 import { Tarefa } from '../model/tarefa.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-tarefa',
@@ -11,13 +12,15 @@ export class FormTarefaComponent implements OnInit {
   tarefaURL = 'http://localhost:8080/tarefa'
   funcionarioURL = 'http://localhost:8080/funcionario'
 
+  resposta:any;
+
   tarefa : Tarefa = new Tarefa();
 
   funcionarios= new Array<any>;
 
   prioridades= new Array<any>;
 
-  constructor(private service: AppService){}
+  constructor(private service: AppService, private router : Router){}
 
   ngOnInit(): void {
     this.service.getAll(this.funcionarioURL).subscribe(resposta => this.funcionarios = resposta);
@@ -26,6 +29,15 @@ export class FormTarefaComponent implements OnInit {
   }
 
   criar(){
-    this.service.adicionar(this.tarefaURL, this.tarefa).subscribe();
+    this.service.adicionar(this.tarefaURL, this.tarefa).subscribe((resultData: any) => {
+      let i = 0;
+      resultData.forEach((element: { defaultMessage: any; }) => {
+        alert(element.defaultMessage)
+        i++;
+      });
+      if(i == 0){
+        this.router.navigateByUrl('/');
+      }
+    });
   }
 }

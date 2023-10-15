@@ -5,15 +5,11 @@ import { FormTarefaComponent } from './form-tarefa/form-tarefa.component';
 import { ListaFuncionarioComponent } from './lista-funcionario/lista-funcionario.component';
 import { FormFuncionarioComponent } from './form-funcionario/form-funcionario.component';
 import { EditarTarefaComponent } from './editar-tarefa/editar-tarefa.component';
-import { LoginComponent } from './login/login.component';
+import { EditarFuncionarioComponent } from './editar-funcionario/editar-funcionario.component';
 
 const routes: Routes = [
   {
   	path: '',
-  	component: LoginComponent
-  },
-  {
-  	path: 'tarefa',
   	component: ListaTarefaComponent
   },
   {
@@ -27,6 +23,10 @@ const routes: Routes = [
   {
   	path: 'funcionario',
   	component: ListaFuncionarioComponent
+  },
+  {
+  	path: 'funcionario/editar/:id',
+  	component: EditarFuncionarioComponent
   },
   {
   	path: 'funcionario/novo',

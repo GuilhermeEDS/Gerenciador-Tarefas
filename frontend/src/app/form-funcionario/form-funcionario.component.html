@@ -1,7 +1,15 @@
 <div class="h-screen flex flex-col justify-center items-center">
   <div class="bg-slate-50 w-full max-w-3xl rounded shadow-md p-5">
-    <h1 class="text-3xl font-bold mb-4">Cadastrar Novo Funcionario</h1>
-
+    <div class="flex flex-row justify-between">
+      <h1 class="text-3xl font-bold mb-4">Cadastrar Novo Funcionario</h1>
+      <div>
+      <button routerLink="/funcionario"class="hover:border-slate-50 hover:bg-slate-900 hover:text-slate-50 border p-4 border-slate-900 rounded-md" type="submit">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-return-left" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M14.5 1.5a.5.5 0 0 1 .5.5v4.8a2.5 2.5 0 0 1-2.5 2.5H2.707l3.347 3.346a.5.5 0 0 1-.708.708l-4.2-4.2a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 8.3H12.5A1.5 1.5 0 0 0 14 6.8V2a.5.5 0 0 1 .5-.5z"/>
+      </svg>
+      </button>
+      </div>
+      </div>
     <form class="flex flex-col">
       <label class="label" for="nome">Nome</label>
       <input id="nome" name="nome" [(ngModel)]="funcionario.nome" class="input mb-2" placeholder="João da Silva" type="text"/>
@@ -9,8 +17,6 @@
       <label class="label" for="cpf">CPF</label>
       <input id="cpf" name="cpf" [(ngModel)]="funcionario.cpf" class="input mb-2" placeholder="João da Silva" type="text"/>
 
-      <label class="label" for="senha">Senha</label>
-      <input id="senha" name="senha" [(ngModel)]="funcionario.senha" class="input mb-2" placeholder="João da Silva" type="password"/>
       <div class="flex flex-row-reverse my-4">
         <button (click)="criar()"
           class="hover:border-slate-50 hover:bg-slate-900 hover:text-slate-50 border px-4 py-2 border-slate-900 rounded-md"

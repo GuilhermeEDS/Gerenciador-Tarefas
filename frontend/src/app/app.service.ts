@@ -30,27 +30,7 @@ export class AppService {
     this.http.delete(url).subscribe();
   }
 
-  login(data : any){
-    this.http.post("http://localhost:8080/login", data).subscribe(  (resultData: any) => {
-        console.log(resultData);
-
-        if (resultData.mensagem == "Cpf não cadastrado")
-        {
-
-          alert("Cpf não cadastrado");
-
-
-        }
-        else if(resultData.mensagem == "Logado com sucesso")
-
-         {
-          this.router.navigateByUrl('/tarefa');
-        }
-        else
-        {
-          alert("Senha incorreta");
-        }
-      });
+  concluir(url : string){
+    this.http.post(url, null).subscribe();
   }
-
 }

@@ -11,7 +11,6 @@ import { FormFuncionarioComponent } from './form-funcionario/form-funcionario.co
 import { FormTarefaComponent } from './form-tarefa/form-tarefa.component';
 import { EditarFuncionarioComponent } from './editar-funcionario/editar-funcionario.component';
 import { EditarTarefaComponent } from './editar-tarefa/editar-tarefa.component';
-import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +18,6 @@ import { LoginComponent } from './login/login.component';
     ListaTarefaComponent,
     ListaFuncionarioComponent,
     FormFuncionarioComponent,
-    LoginComponent,
     FormTarefaComponent,
     EditarFuncionarioComponent,
     EditarTarefaComponent

@@ -20,9 +20,6 @@ public class Funcionario extends Entidade {
     @JsonIgnore
     private List<Tarefa> tarefas;
 
-    @Column
-    private String senha;
-
     public Funcionario(String nome, String cpf) {
         super();
         this.nome = nome;
@@ -57,11 +54,4 @@ public class Funcionario extends Entidade {
         this.tarefas = tarefas;
     }
 
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
 }

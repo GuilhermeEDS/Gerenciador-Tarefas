@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Tarefa } from '../model/tarefa.model';
 import { AppService } from '../app.service';
-import { ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, Router } from '@angular/router';
 
 @Component({
   selector: 'app-editar-tarefa',
@@ -19,7 +19,7 @@ export class EditarTarefaComponent implements OnInit {
 
   prioridades= new Array<any>;
 
-  constructor(private service: AppService, private route: ActivatedRoute){
+  constructor(private service: AppService, private route: ActivatedRoute, private router: Router){
     const routeParams = this.route.snapshot.paramMap;
     this.tarefaAux = this.tarefaURL + '/' + routeParams.get('id');
   }
@@ -52,8 +52,19 @@ export class EditarTarefaComponent implements OnInit {
     });
   }
 
-  criar(){
-    this.service.adicionar(this.tarefaAux, this.tarefa).subscribe();
+  editar(){
+    this.service.adicionar(this.tarefaAux, this.tarefa).subscribe((resultData: any) => {
+      let i = 0;
+      console.log(resultData);
+      resultData.forEach((element: { defaultMessage: any; }) => {
+
+        alert(element.defaultMessage)
+        i++;
+      });
+      if(i == 0){
+        this.router.navigateByUrl('/');
+      }
+    });
   }
 
 }

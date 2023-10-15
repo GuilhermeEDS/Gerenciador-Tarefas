@@ -1,19 +1,18 @@
 package com.empresa.tarefas.dto;
 
 import com.empresa.tarefas.entity.Funcionario;
+import jakarta.validation.constraints.NotNull;
 
 public class FuncionarioDTO {
 
+    @NotNull(message = "Nome não pode ser vazio.")
     public String nome;
-
+    @NotNull(message = "Cpf não pode ser vazio.")
     public String cpf;
 
-    public String senha;
-
-    public FuncionarioDTO(String nome, String cpf, String senha) {
+    public FuncionarioDTO(String nome, String cpf) {
         this.nome = nome;
         this.cpf = cpf;
-        this.senha = senha;
     }
 
     public String getNome() {
@@ -30,14 +29,6 @@ public class FuncionarioDTO {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 
     public Funcionario toFuncionario() {

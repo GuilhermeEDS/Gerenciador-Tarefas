@@ -1,9 +1,11 @@
 package com.empresa.tarefas.service;
 
+import com.empresa.tarefas.arq.ValidacaoEntidadeException;
 import com.empresa.tarefas.dto.TarefaDTO;
 import com.empresa.tarefas.entity.Funcionario;
 import com.empresa.tarefas.entity.Tarefa;
 import com.empresa.tarefas.enumeration.Prioridade;
+import com.empresa.tarefas.enumeration.Situacao;
 import com.empresa.tarefas.repository.FuncionarioRepository;
 import com.empresa.tarefas.repository.TarefaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +29,10 @@ public class TarefaService {
         return tarefaRepository.findAll();
     }
 
-    public Tarefa porId(Long id) {
+    public Tarefa porId(Long id) throws ValidacaoEntidadeException{
         Optional<Tarefa> tarefa = tarefaRepository.findById(id);
         if (tarefa.isEmpty()) {
-            //adicionar Exception
-            return null;
+            throw new ValidacaoEntidadeException("Tarefa não cadastrada");
         }
         return tarefa.get();
     }
@@ -62,5 +63,15 @@ public class TarefaService {
     public void removerTarefa(Long id) {
         Tarefa tarefa = porId(id);
         tarefaRepository.delete(tarefa);
+    }
+
+    public void concluirTarefa(Long idTarefa) {
+        Tarefa tarefa = porId(idTarefa);
+        tarefa.setSituacao(Situacao.CONCLUIDA);
+        tarefaRepository.save(tarefa);
+    }
+
+    public Object buscarTarefa(Long numero, String tituloDes, String responsavel, Situacao situacao) {
+        return tarefaRepository.searchBy(numero, tituloDes, responsavel, situacao);
     }
 }

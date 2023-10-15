@@ -83,4 +83,12 @@ public class Tarefa extends Entidade {
     public void setDeadline(Date deadline) {
         this.deadline = deadline;
     }
+
+    public Situacao getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(Situacao situacao) {
+        this.situacao = situacao;
+    }
 }

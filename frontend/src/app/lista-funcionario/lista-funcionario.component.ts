@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AppService } from '../app.service';
+import { Router } from '@angular/router';
+import { Funcionario } from '../model/funcionario.model';
 
 @Component({
   selector: 'app-lista-funcionario',
@@ -8,7 +10,7 @@ import { AppService } from '../app.service';
 })
 export class ListaFuncionarioComponent implements OnInit {
 
-  funcionario : any;
+  funcionario : Funcionario = new Funcionario();
 
   funcionarios= new Array<any>;
 
@@ -18,9 +20,29 @@ export class ListaFuncionarioComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.getAll(this.funcionarioURL).subscribe(resposta => this.funcionarios = resposta);
+
+    this.funcionario.cpf = ""
+    this.funcionario.nome= ""
   }
 
   buscar(){
-    this.service.get(this.funcionarioURL + '/1').subscribe(resposta => this.funcionarios = [resposta]);
+    let url : string = this.funcionarioURL + '/buscar?';
+    if(this.funcionario.nome!=""){
+      url+="nome="+ this.funcionario.nome + '&'
+    }
+    if(this.funcionario.cpf!=""){
+      url+="cpf="+ this.funcionario.cpf + '&'
+    }
+    console.log(url)
+    this.service.get(url).subscribe(resposta => {
+        this.funcionarios = resposta;
+    });
   }
+
+  remover(url: string){
+    this.service.remover(url);
+    window.location.reload()
+  }
+
+
 }

@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public enum Situacao {
     EMANDAMENTO("Em Andamento"), CONCLUIDA("Concluído"), CANCELADO("Cancelado");
 
-    private final String situacao;
+    public final String situacao;
 
     Situacao(String situacao) {
 
