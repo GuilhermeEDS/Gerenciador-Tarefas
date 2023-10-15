@@ -1,0 +1,22 @@
+<div class="h-screen flex flex-col justify-center items-center">
+  <div class="bg-slate-50 w-full max-w-3xl rounded shadow-md p-5">
+    <h1 class="text-3xl font-bold mb-4">Cadastrar Novo Funcionario</h1>
+
+    <form class="flex flex-col">
+      <label class="label" for="nome">Nome</label>
+      <input id="nome" name="nome" [(ngModel)]="funcionario.nome" class="input mb-2" placeholder="João da Silva" type="text"/>
+
+      <label class="label" for="cpf">CPF</label>
+      <input id="cpf" name="cpf" [(ngModel)]="funcionario.cpf" class="input mb-2" placeholder="João da Silva" type="text"/>
+
+      <label class="label" for="senha">Senha</label>
+      <input id="senha" name="senha" [(ngModel)]="funcionario.senha" class="input mb-2" placeholder="João da Silva" type="password"/>
+      <div class="flex flex-row-reverse my-4">
+        <button (click)="criar()"
+          class="hover:border-slate-50 hover:bg-slate-900 hover:text-slate-50 border px-4 py-2 border-slate-900 rounded-md"
+          type="submit">Cadastrar</button>
+      </div>
+    </form>
+  </div>
+</div>
+

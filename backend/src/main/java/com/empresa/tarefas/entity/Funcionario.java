@@ -1,5 +1,6 @@
 package com.empresa.tarefas.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
@@ -15,8 +16,12 @@ public class Funcionario extends Entidade {
     @Column(nullable = false, unique = true)
     private String cpf;
 
-    @OneToMany
+    @OneToMany(mappedBy = "responsavel")
+    @JsonIgnore
     private List<Tarefa> tarefas;
+
+    @Column
+    private String senha;
 
     public Funcionario(String nome, String cpf) {
         super();
@@ -50,5 +55,13 @@ public class Funcionario extends Entidade {
 
     public void setTarefas(List<Tarefa> tarefas) {
         this.tarefas = tarefas;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }

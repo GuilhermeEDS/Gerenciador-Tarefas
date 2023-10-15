@@ -1,9 +1,10 @@
 package com.empresa.tarefas.entity;
 
 import com.empresa.tarefas.enumeration.Prioridade;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
+import com.empresa.tarefas.enumeration.Situacao;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
@@ -18,9 +19,15 @@ public class Tarefa extends Entidade {
     private Funcionario responsavel;
 
     @Column(nullable = false)
+    @JsonUnwrapped
     private Prioridade prioridade;
 
+    @Column
+    @JsonUnwrapped
+    private Situacao situacao;
+
     @Column(nullable = false)
+    @JsonFormat(pattern="yyyy-MM-dd")
     private Date deadline;
 
     public Tarefa(String titulo, String descricao, Prioridade prioridade, Date deadline) {
@@ -29,10 +36,12 @@ public class Tarefa extends Entidade {
         this.descricao = descricao;
         this.prioridade = prioridade;
         this.deadline = deadline;
+        this.situacao = Situacao.EMANDAMENTO;
     }
 
     public Tarefa() {
         super();
+        this.situacao = Situacao.EMANDAMENTO;
     }
 
     public String getTitulo() {

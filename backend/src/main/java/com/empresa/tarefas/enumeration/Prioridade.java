@@ -1,19 +1,23 @@
 package com.empresa.tarefas.enumeration;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+@JsonFormat(shape = JsonFormat.Shape.OBJECT)
 public enum Prioridade {
     MEDIA("Média"), BAIXA("Baixa"), ALTA("Alta");
 
-    private final String descricao;
+    private final String prioridade;
 
-    Prioridade(String descricao) {
-        this.descricao = descricao;
+    Prioridade(String prioridade) {
+
+        this.prioridade = prioridade;
     }
 
     public static Prioridade porId(int id) {
         return Prioridade.values()[id];
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getPrioridade() {
+        return prioridade;
     }
 }

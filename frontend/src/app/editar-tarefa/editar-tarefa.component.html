@@ -1,0 +1,41 @@
+<div class="h-screen flex flex-col justify-center items-center">
+  <div class="bg-slate-50 w-full max-w-3xl rounded shadow-md p-5">
+    <h1 class="text-3xl font-bold mb-4">Editar Tarefa</h1>
+
+    <form class="flex flex-col">
+      <label class="label" for="titulo">Título</label>
+      <input required id="titulo" [(ngModel)]="tarefa.titulo" name="titulo" class="input mb-2" type="text" />
+
+      <label class="label" for="descricao">Descrição</label>
+      <textarea rows="3" id="descricao" [(ngModel)]="tarefa.descricao" name="descricao" class="input mb-2"></textarea>
+
+      <div class="flex flex-grow">
+        <div class="flex w-1/2 pr-2 flex-col">
+          <label class="label" for="responsavel">
+            Responsável
+          </label>
+          <select required name="idFuncionario" [(ngModel)]="tarefa.idFuncionario" class="input appearance-none mb-2" id="responsavel">
+            <option value="-1"></option>
+            <option *ngFor="let funcionario of funcionarios" value="{{funcionario.id}}">{{funcionario.nome}}</option>
+          </select>
+        </div>
+        <div class="flex w-1/2 pl-2  flex-col">
+          <label class="label" for="prioridade">
+            Prioridade
+          </label>
+          <select required name="prioridade" [(ngModel)]="tarefa.prioridade" class="input appearance-none" id="prioridade">
+            <option value="-1"></option>
+            <option *ngFor="let prioridade of prioridades; let i = index" [attr.id]="prioridade-i" value="{{i}}">{{prioridade.prioridade}}</option>
+          </select>
+        </div>
+      </div>
+      <label class="label" for="deadline">Deadline</label>
+      <input required name="deadline" id="deadline" [(ngModel)]="tarefa.deadline" class="input mb-2" type="date" />
+      <div class="flex flex-row-reverse my-4">
+        <button (click)="criar()"
+          class="hover:border-slate-50 hover:bg-slate-900 hover:text-slate-50 border px-4 py-2 border-slate-900 rounded-md"
+          type="submit">Cadastrar</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+<div class="flex flex-col justify-center items-center">
+  <div class="bg-slate-50 my-10 w-auto rounded shadow-md p-5">
+    <h1 class="text-3xl font-bold mb-4">Tarefas</h1>
+
+    <form action="post" class="flex flex-col">
+      <label class="label" for="numero">Número</label>
+      <input id="numero" class="input mb-2" placeholder="João da Silva" type="text" />
+
+      <label class="label" for="descricao">Título/Descrição</label>
+      <input id="descricao" class="input mb-2" placeholder="João da Silva" type="text" />
+
+      <div class="flex flex-grow">
+        <div class="flex w-1/2 pr-2 flex-col">
+      <label class="label" for="responsavel">
+        Responsável
+      </label>
+      <select class="input appearance-none mb-2" id="responsavel">
+        <option value="-1"></option>
+        <option>Guigas</option>
+      </select>
+    </div>
+    <div class="flex w-1/2 pl-2  flex-col">
+      <label class="label" for="situacao">
+        Situação
+      </label>
+      <select class="input appearance-none" id="situacao">
+        <option value="-1"></option>
+        <option>Concluído</option>
+      </select>
+    </div>
+    </div>
+    <div class="flex flex-row-reverse my-4">
+      <button class="hover:border-slate-50 hover:bg-slate-900 hover:text-slate-50 border px-4 py-2 border-slate-900 rounded-md" type="submit">Buscar</button>
+    </div>
+    </form>
+    <div class="self-center">
+    <table >
+      <tr class="bg-slate-400 border-b-2">
+        <th class="p-5 rounded-tl-lg font-semibold">Número</th>
+        <th class="p-5 max-w-xs font-semibold">Título</th>
+        <th class="p-5 font-semibold">Situação</th>
+        <th class="p-5 max-w-xs font-semibold">Responsável</th>
+        <th class="p-5 rounded-tr-lg font-semibold">Ações</th>
+      </tr>
+      <tr *ngFor="let tarefa of tarefas" class="bg-slate-300 border-b-2">
+        <td class="p-5 text-left ">{{tarefa.id}}</td>
+        <td class="p-5 max-w-xs break-words text-left ">{{tarefa.titulo}}</td>
+        <td class="p-5 text-left ">{{tarefa.situacao}}</td>
+        <td class="p-5 break-words max-w-xs text-left ">{{tarefa.responsavel.nome}}</td>
+        <td class="p-5 text-left ">
+          <div>
+            <a class="m-2 hover:border-slate-50 hover:bg-slate-900 hover:text-slate-50 border px-4 py-2 bg-slate-400 border-slate-900 rounded-md" routerLink="/tarefa/editar/{{tarefa.id}}" type="submit">Editar</a>
+            <button class="m-2 hover:border-slate-50 hover:bg-slate-900 hover:text-slate-50 border px-4 py-2 bg-slate-400 border-slate-900 rounded-md" (click)="remover(tarefaURL + '/remover/' + tarefa.id)" type="submit">Excluir</button>
+            <button class="m-2 hover:border-slate-50 hover:bg-slate-900 hover:text-slate-50 border px-4 py-2 bg-slate-400 border-slate-900 rounded-md" type="submit">Concluir</button>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+  </div>
+</div>

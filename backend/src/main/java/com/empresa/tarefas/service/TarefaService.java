@@ -4,6 +4,7 @@ import com.empresa.tarefas.dto.TarefaDTO;
 import com.empresa.tarefas.entity.Funcionario;
 import com.empresa.tarefas.entity.Tarefa;
 import com.empresa.tarefas.enumeration.Prioridade;
+import com.empresa.tarefas.repository.FuncionarioRepository;
 import com.empresa.tarefas.repository.TarefaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,9 @@ public class TarefaService {
 
     @Autowired
     FuncionarioService funcionarioService;
+
+    @Autowired
+    FuncionarioRepository funcionarioRepository;
 
     public Iterable<Tarefa> listarTarefas() {
         return tarefaRepository.findAll();
@@ -42,19 +46,21 @@ public class TarefaService {
 
     public Tarefa atualizarTarefa(TarefaDTO tarefaDTO, Long id) {
         Tarefa tarefa = porId(id);
+        Funcionario funcionario = funcionarioService.porId(tarefaDTO.getIdFuncionario());
 
         tarefa.setTitulo(tarefaDTO.getTitulo());
         tarefa.setDescricao(tarefaDTO.getDescricao());
         tarefa.setDeadline(tarefaDTO.getDeadline());
         tarefa.setPrioridade(Prioridade.porId(tarefaDTO.getPrioridade()));
-        tarefa.setResponsavel(funcionarioService.porId(tarefaDTO.getIdFuncionario()));
+        tarefa.setResponsavel(funcionario);
+        funcionario.getTarefas().add(tarefa);
 
+        funcionarioRepository.save(funcionario);
         return tarefaRepository.save(tarefa);
     }
 
-    public Boolean removerTarefa(Long id) {
+    public void removerTarefa(Long id) {
         Tarefa tarefa = porId(id);
         tarefaRepository.delete(tarefa);
-        return true;
     }
 }

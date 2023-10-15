@@ -13,22 +13,14 @@ public class Entidade {
     private Long id;
 
     @Column(nullable = false)
-    private Boolean ativo;
-
-    @Column(nullable = false)
     private Date dataCadastro;
 
     public Entidade() {
-        this.ativo = true;
         this.dataCadastro = new Date();
     }
 
     public Long getId() {
         return id;
-    }
-
-    public void setAtivo(Boolean ativo) {
-        this.ativo = ativo;
     }
 
     public Date getDataCadastro() {

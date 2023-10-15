@@ -1,9 +1,12 @@
 package com.empresa.tarefas.service;
 
+import com.empresa.tarefas.config.MensagemLogin;
 import com.empresa.tarefas.dto.FuncionarioDTO;
+import com.empresa.tarefas.dto.LoginDTO;
 import com.empresa.tarefas.entity.Funcionario;
 import com.empresa.tarefas.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -13,6 +16,9 @@ public class FuncionarioService {
 
     @Autowired
     FuncionarioRepository funcionarioRepository;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     public Iterable<Funcionario> listarFuncionarios() {
         return  funcionarioRepository.findAll();
@@ -29,6 +35,7 @@ public class FuncionarioService {
 
     public Funcionario criarFuncionario(FuncionarioDTO funcionarioDTO) {
         Funcionario funcionario = funcionarioDTO.toFuncionario();
+        funcionario.setSenha(passwordEncoder.encode(funcionarioDTO.getSenha()));
         return funcionarioRepository.save(funcionario);
     }
 
@@ -45,6 +52,22 @@ public class FuncionarioService {
         Funcionario funcionario = porId(id);
         funcionarioRepository.delete(funcionario);
         return true;
+    }
+
+    public MensagemLogin loginFuncionario(LoginDTO loginDTO) {
+        String msg = "";
+        Optional<Funcionario> funcionario = funcionarioRepository.findByCpf(loginDTO.getCpf());
+        if (funcionario.isPresent()) {
+            String senha = loginDTO.getSenha();
+            String senhaFuncionario = funcionario.get().getSenha();
+            Boolean correto = passwordEncoder.matches(senha, senhaFuncionario);
+            if (correto) {
+                return new MensagemLogin("Logado com sucesso", true);
+            } else {
+                return new MensagemLogin("Senha incorreta", false);
+            }        }else {
+            return new MensagemLogin("Cpf não cadastrado", false);
+        }
     }
 
 }
