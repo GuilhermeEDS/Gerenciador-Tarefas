@@ -1,5 +1,11 @@
 # Gerenciador de Tarefas
 
+Sistema implementado com as seguintes competências
+a) Criar uma aplicação Front-end utilizando Angular na versão mais recente.
+b) Desenvolver o backend utilizando Java 11 e Spring Boot.
+c) Os endpoints devem ser em REST.
+e) Utilizar persistência em um banco de dados PostgreSQL e persistência JPA.
+
 # Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina o:
