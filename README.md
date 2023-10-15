@@ -15,7 +15,7 @@ $ git clone https://github.com/GuilhermeEDS/Gerenciador-Tarefas.git
 
 # Para compilar o frontend:
 1. Abra a pasta frontend e rode os seguintes comandos:
-2. ``` $ npm install```
+2. ```$ npm install```
 3. ```$ npm start```
 
 # para compilar o backend siga os passos:
