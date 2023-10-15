@@ -21,7 +21,7 @@ $ git clone https://github.com/GuilhermeEDS/Gerenciador-Tarefas.git
 3. $ npm start
 
 # para compilar o backend siga os passos:
-1. Crie um banco local vazio.
+1. Crie um banco local chamado tarefas.
 2. No arquivo 'application.properties' do projeto altere as configurações do banco para seu banco local.
 3. Abra a pasta backend e rode os seguintes comandos:
 4. $ ./mvnw install
